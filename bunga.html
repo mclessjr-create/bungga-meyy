@@ -98,9 +98,9 @@
 </head>
 <body>
 
-    <audio autoplay loop>
-        <source src="SaveTik.io_7320465202435083525.mp3" type="audio/mpeg">
-    </audio>
+    <audio id="bgm" autoplay loop>
+    <source src="SaveTik.io_7320465202435083525.mp3" type="audio/mpeg">
+</audio>
 
     <h1>SEMANGAT SAYANGG🤍</h1>
 
@@ -142,8 +142,15 @@
             setTimeout(() => g.remove(), 4000);
         }
         setInterval(glitter, 120);
+        document.addEventListener("click", () => {
+        const audio = document.getElementById("bgm");
+        if (audio.paused) {
+            audio.play().catch(()=>{});
+        }
+    });
     </script>
 
 </body>
 </html>
+
 
