@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <title>Bunga Untukmu</title>
     <style>
+
+        /* FIX LAYAR HP BERGERAK / GOYANG */
+        html, body {
+            overflow: hidden;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+        }
+
         body {
             margin: 0;
             height: 100vh;
@@ -30,7 +39,7 @@
             color: white;
             font-size: 28px;
             text-align: center;
-            margin-top: 40px; /* BIAR TURUN DI BAWAH “SEMANGAT MEYY” */
+            margin-top: 40px; 
             white-space: pre-wrap;
             text-shadow: 0 0 10px #ffb3e6;
         }
@@ -38,11 +47,6 @@
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
-        }
-
-        @keyframes rise {
-            0% { transform: translateY(0) scale(0.7); opacity: 0; }
-            100% { transform: translateY(-450px) scale(1); opacity: 1; }
         }
 
         .petal {
@@ -99,13 +103,12 @@
 <body>
 
     <audio id="bgm" autoplay loop>
-    <source src="SaveTik.io_7320465202435083525.mp3" type="audio/mpeg">
-</audio>
+        <source src="SaveTik.io_7320465202435083525.mp3" type="audio/mpeg">
+    </audio>
 
     <h1>SEMANGAT SAYANGG🤍</h1>
 
     <div id="typing"></div>
-
 
     <button onclick="location.href='index.html'">Kembali</button>
 
@@ -142,15 +145,15 @@
             setTimeout(() => g.remove(), 4000);
         }
         setInterval(glitter, 120);
+
+        /* FIX AUDIO TIDAK JALAN DI HP */
         document.addEventListener("click", () => {
-        const audio = document.getElementById("bgm");
-        if (audio.paused) {
-            audio.play().catch(()=>{});
-        }
-    });
+            const audio = document.getElementById("bgm");
+            if (audio.paused) {
+                audio.play().catch(()=>{});
+            }
+        });
     </script>
 
 </body>
 </html>
-
-
