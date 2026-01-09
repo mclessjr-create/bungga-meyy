@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bunga Untukmu</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at bottom, #ff7ac5, #1a0014);
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+            flex-direction: column;
+        }
+
+        h1 {
+            color: white;
+            font-size: 60px;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 3s ease forwards 1s;
+            text-shadow: 0 0 25px #ffb3e6;
+            margin-top: 40px;
+        }
+
+        #typing {
+            color: white;
+            font-size: 28px;
+            text-align: center;
+            margin-top: 40px; /* BIAR TURUN DI BAWAH “SEMANGAT MEYY” */
+            white-space: pre-wrap;
+            text-shadow: 0 0 10px #ffb3e6;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes rise {
+            0% { transform: translateY(0) scale(0.7); opacity: 0; }
+            100% { transform: translateY(-450px) scale(1); opacity: 1; }
+        }
+
+        .petal {
+            position: absolute;
+            top: -50px;
+            font-size: 35px;
+            animation: fall linear infinite;
+            opacity: 0.9;
+            filter: drop-shadow(0 0 8px white);
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(120vh) rotate(360deg); }
+        }
+
+        .glitter {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: glow 3s infinite ease-in-out;
+        }
+
+        @keyframes glow {
+            0%,100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+
+        button {
+            position: absolute;
+            bottom: 40px;
+            padding: 15px 35px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid white;
+            color: white;
+            border-radius: 12px;
+            font-size: 22px;
+            cursor: pointer;
+            transition: 0.3s;
+            backdrop-filter: blur(6px);
+        }
+
+        button:hover {
+            background: white;
+            color: #ff0066;
+            transform: scale(1.15);
+            box-shadow: 0 0 25px white;
+        }
+    </style>
+</head>
+<body>
+
+    <audio autoplay loop>
+        <source src="https://pro.snapcdn.app/dl?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJodHRwczovL3NmMTYtbXVzaWMtc2lnbi50aWt0b2tjZG4uY29tL29iai90b3MtdXNlYXN0MmEtdmUtMjc3NC9vZzFIQm9Ea0JYODFBZnNGcmdmUDJHcG1mUUs0MkFFQXJlVFNoaj9sazNzPTA4ZDc0YjU2JngtZXhwaXJlcz0xNzY4MDAxMzU1Jngtc2lnbmF0dXJlPTZaU29rU3RNdEJNJTJCY0dRU0NVMGozYWVyMENNJTNEIiwiZmlsZW5hbWUiOiJTYXZlVGlrLmlvXzczMjA0NjUyMDI0MzUwODM1MjUubXAzIiwibmJmIjoxNzY3OTc5NzU2LCJleHAiOjE3Njc5ODMzNTYsImlhdCI6MTc2Nzk3OTc1Nn0.yqW2DCEk7IL9RkwysNmrKVuA1EwevvlXzWVQMUIz8eQ" type="audio/mpeg">
+    </audio>
+
+    <h1>SEMANGAT SAYANGG🤍</h1>
+
+    <div id="typing"></div>
+
+
+    <button onclick="location.href='index.html'">Kembali</button>
+
+    <script>
+        const text = "meylann semangatt terusss yaaa🌸\n belajar yang bener biar jadi anak pintar katanyaa mau jadi dokterrr\n jaga kesehatan jugaa, makan yang banyak biar kuatttt\n semoga cepet lulus dan sukses selalua nantiiiii🤍\n\n dari yang selalu dukung kamu :D";
+        let i = 0;
+
+        function type() {
+            if (i < text.length) {
+                document.getElementById('typing').innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, 60);
+            }
+        }
+        setTimeout(type, 2000);
+
+        function spawnPetal() {
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            petal.innerHTML = '🌸';
+            petal.style.left = Math.random() * window.innerWidth + 'px';
+            petal.style.animationDuration = (4 + Math.random() * 4) + 's';
+            document.body.appendChild(petal);
+            setTimeout(() => petal.remove(), 9000);
+        }
+        setInterval(spawnPetal, 550);
+
+        function glitter() {
+            const g = document.createElement('div');
+            g.className = 'glitter';
+            g.style.left = Math.random() * window.innerWidth + 'px';
+            g.style.top = Math.random() * window.innerHeight + 'px';
+            document.body.appendChild(g);
+            setTimeout(() => g.remove(), 4000);
+        }
+        setInterval(glitter, 120);
+    </script>
+
+</body>
+</html>

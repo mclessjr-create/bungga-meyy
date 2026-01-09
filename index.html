@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Meylann</title>
+    <style>
+        body {
+            background: radial-gradient(circle at top, #111, #000);
+            color: #ccc;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #wrapper {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            animation: fadeIn 2s ease forwards;
+        }
+
+        #name {
+            font-size: 60px;
+            letter-spacing: 16px;
+            display: flex;
+            gap: 14px;
+            font-weight: 600;
+        }
+
+        .letter {
+            color: #333;
+            transition: 0.35s ease;
+            text-shadow: 0 0 0px #fff;
+            filter: drop-shadow(0 0 0px #fff);
+        }
+
+        .active {
+            color: #fff;
+            text-shadow: 0 0 25px #fff, 0 0 60px #fff;
+            transform: scale(1.25) rotate(2deg);
+            filter: drop-shadow(0 0 25px #fff);
+        }
+
+        #love {
+            font-size: 125px;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: 1s ease;
+            filter: drop-shadow(0 0 25px white);
+        }
+
+        button {
+            margin-top: 55px;
+            padding: 16px 36px;
+            background: rgba(255,255,255,0.1);
+            border: 2px solid white;
+            color: white;
+            font-size: 24px;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: 0.35s;
+            backdrop-filter: blur(6px);
+        }
+
+        button:hover {
+            background: white;
+            color: black;
+            transform: scale(1.15);
+            box-shadow: 0 0 30px white;
+        }
+
+        .particle {
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: floatUp 7s linear infinite;
+            filter: drop-shadow(0 0 15px white);
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1); opacity: 0.5; }
+            100% { transform: translateY(-900px) scale(1.5); opacity: 0; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <audio autoplay loop>
+        <source src="https://files.catbox.moe/2x8p0e.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="wrapper">
+        <div id="name">
+            <span class="letter">M</span>
+            <span class="letter">E</span>
+            <span class="letter">Y</span>
+            <span class="letter">L</span>
+            <span class="letter">A</span>
+            <span class="letter">N</span>
+            <span class="letter">N</span>
+        </div>
+        <div id="love">🤍</div>
+    </div>
+
+    <button onclick="location.href='bunga.html'">Surat</button>
+
+    <script>
+        const letters = document.querySelectorAll('.letter');
+        const love = document.getElementById('love');
+        let index = 0;
+
+        function glow() {
+            letters.forEach((l, i) => {
+                l.classList.toggle('active', i === index);
+            });
+
+            index++;
+
+            if (index === letters.length) {
+                love.style.opacity = 1;
+                love.style.transform = 'translateY(0)';
+            }
+
+            if (index >= letters.length) index = 0;
+        }
+
+        setInterval(glow, 350);
+
+        function spawnParticles() {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            p.style.left = Math.random() * window.innerWidth + 'px';
+            p.style.bottom = '0px';
+            p.style.animationDuration = (5 + Math.random() * 5) + 's';
+            document.body.appendChild(p);
+
+            setTimeout(() => p.remove(), 9000);
+        }
+
+        setInterval(spawnParticles, 180);
+            // Tambahan efek love terbang
+        function spawnLove() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '🤍';
+            heart.style.position = 'absolute';
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            heart.style.top = window.innerHeight + 'px';
+            heart.style.fontSize = (30 + Math.random() * 25) + 'px';
+            heart.style.opacity = 0.7;
+            heart.style.filter = 'drop-shadow(0 0 8px white)';
+            heart.style.transition = 'transform 4s linear, opacity 4s ease';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.style.transform = 'translateY(-900px)';
+                heart.style.opacity = 0;
+            }, 100);
+
+            setTimeout(() => heart.remove(), 4500);
+        }
+
+        setInterval(spawnLove, 900);
+    </script>
+
+</body>
+</html>
